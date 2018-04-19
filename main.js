@@ -5,18 +5,33 @@ form.addEventListener("submit", function(e){
   e.preventDefault();
   let title = document.getElementById("title").value;
   let description = document.getElementById("description").value;
+  let cat1, cat2, cat3;
+  let categoria1 = document.getElementById("inlineCheckbox1");
+  let categoria2 = document.getElementById("inlineCheckbox2");
+  let categoria3 = document.getElementById("inlineCheckbox3");
 
-  console.log(title);
-  console.log(description);
+  if (categoria1.checked) {
+    cat1 = categoria1.value;
+  }
 
-  create_card(title, description);
+  if (categoria2.checked) {
+    cat2 = categoria2.value;
+  }
+
+  if (categoria3.checked) {
+    cat3 = categoria3.value;
+  }
+
+
+  create_card(title, description, cat1, cat2, cat3);
+  form.reset();
 })
 
 //seleccionamos el lugar donde se cargan las tareas
 const row = document.querySelector(".row");
 let div = null;
 
-function create_card(title, description, categoria1, categoria2, categoria3){
+function create_card(title, description, cat1, cat2, cat3){
   // creamos los elementos del layout de card
   div = document.createElement("div");
   div.className = "col-sm-6 mb-4";
@@ -33,15 +48,15 @@ function create_card(title, description, categoria1, categoria2, categoria3){
 
   let span1 = document.createElement("span");
   span1.className = "badge badge-pill badge-light";
-  span1.textContent = "Categoria 1";
+  span1.textContent = cat1;
 
   let span2 = document.createElement("span");
   span2.className = "badge badge-pill badge-light";
-  span2.textContent = "Categoria 2";
+  span2.textContent = cat2;
 
   let span3 = document.createElement("span");
   span3.className = "badge badge-pill badge-light";
-  span3.textContent = "Categoria 3";
+  span3.textContent = cat3;
 
   let p = document.createElement("p");
   p.textContent = description;
