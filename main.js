@@ -77,6 +77,7 @@ function create_card(title, description, cat1, cat2, cat3){
   body.appendChild(p);
 
   footer.appendChild(button);
+  footer.addEventListener("click", delete_card);
 
   card.appendChild(body);
   card.appendChild(footer);
@@ -84,4 +85,18 @@ function create_card(title, description, cat1, cat2, cat3){
   div.appendChild(card);
 
   row.appendChild(div);
+}
+
+function delete_card(e){
+  // el padre y el elemento a eliminar (hijo del padre)
+  let ancestro = get_ancestro(e.target, 4);
+  row.removeChild(div);
+}
+
+function get_ancestro(ancestro, level){
+  if(level == 0) {
+    return ancestro;
+  }
+    level --;
+    return get_ancestro(ancestro.parentElement, level);
 }
